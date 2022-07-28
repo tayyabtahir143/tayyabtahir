@@ -1,0 +1,24 @@
+get rm --chached file.txt    #remove file from staging area
+
+git status
+
+
+git rm file.txt -f    #to remove file permanently from file system as well
+
+git branch --list
+git branch rahul      #create new branch
+git checkout rahul    #to switch branch
+
+git checkout master
+git branch -D rahul    #to Delete a bransh
+git merge rahul       #to merge a branch into master
+
+git checkout -b register   #create and switch a branch at once
+
+
+git remote add origin https://github.com/TayyabTahir1/project1.git
+
+git remote -v    #to get active url of github
+
+git push -u origin main
+
