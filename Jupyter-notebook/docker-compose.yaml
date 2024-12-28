@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  jupyter-notebook:
+    image: jupyter/base-notebook
+    container_name: jupyter-notebook
+    ports:
+      - "8004:8888"
+    volumes:
+      - /root/jupyter:/home/jovyan/work
+    restart: always
+    environment:
+      - JUPYTER_TOKEN=#yourpassword  # Optionally set a Jupyter token
+    stdin_open: true  # Keep stdin open to allow interactive mode
+    tty: true  # Allocate a pseudo-TTY (needed for interactive sessions)
+
