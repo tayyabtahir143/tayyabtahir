@@ -1,0 +1,8 @@
+version: "3"
+services:
+  mail-relay:
+    container_name: mail-relay
+    image: tayyabtahir/images:mail-relay-1
+    ports:
+      - 2525:25
+    restart: always
