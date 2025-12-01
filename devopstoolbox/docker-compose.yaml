@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  devtoolbox:
+    container_name: devtoolbox
+    build: .
+    privileged: true
+    tty: true
+    stdin_open: true
+
+    # -------------------------------
+    # Bind-mount persistent home dirs
+    # -------------------------------
+    volumes:
+      # Allow Docker CLI inside container
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # Entire dev user home (safest + easiest)
+      - ./data/home:/home/dev
+
+      # Optional: mount root home too (SSH keys, gcloud if root is used)
+      - ./data/root:/root
+
+      # Kubernetes config
+      - ./data/kube:/home/dev/.kube
+
+      # AWS CLI configs
+      - ./data/aws:/home/dev/.aws
+
+      # Terraform plugins, modules, state
+      - ./data/terraform:/home/dev/.terraform.d
+
+      # Helm repos
+      - ./data/helm:/home/dev/.config/helm
+
+      # K9s preferences
+      - ./data/k9s:/home/dev/.config/k9s
+
+      # Azure CLI
+      - ./data/azure:/home/dev/.azure
+
+      # Google Cloud SDK
+      - ./data/gcloud:/home/dev/.config/gcloud
+
+      # DigitalOcean doctl
+      - ./data/doctl:/home/dev/.config/doctl
+
+      # Zsh customization (optional but recommended)
+      - ./data/zsh:/home/dev/.oh-my-zsh
+
+      # SSH keys
+      - ./data/ssh:/home/dev/.ssh
+
+    environment:
+      # Prevent apt prompts
+      - DEBIAN_FRONTEND=noninteractive
+
+    networks:
+      - devnet
+
+networks:
+  devnet:
+
